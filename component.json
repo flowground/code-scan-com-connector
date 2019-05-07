@@ -1,0 +1,78 @@
+{
+    "title": "CodeScan",
+    "description": "Manage your Hosted CodeScan Service",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/code-scan.com/1.0.0/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://app.code-scan.com/api",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "username": {
+                "label": "Username (codescan_auth)",
+                "viewClass": "TextFieldView",
+                "note": "CodeScan uses Basic Authentication. The username should be your Subscription Id and the Password your api_key available on the subscription page."
+            },
+            "password": {
+                "label": "Password (codescan_auth)",
+                "viewClass": "TextFieldView",
+                "note": "CodeScan uses Basic Authentication. The username should be your Subscription Id and the Password your api_key available on the subscription page."
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "get_job": {
+            "main": "./lib/actions/get_job.js",
+            "title": "Get the status of a job",
+            "description": "Fetches the status of a job",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_job.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_job": {
+            "main": "./lib/actions/post_job.js",
+            "title": "Queues a job",
+            "description": "Creates a new job",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_job.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

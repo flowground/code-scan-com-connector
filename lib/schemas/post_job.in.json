@@ -1,0 +1,37 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "properties": {
+                "analysisMode": {
+                    "description": "When set to preview, analysis is not added to the database",
+                    "type": "string"
+                },
+                "commitOverride": {
+                    "description": "When the project is based on git, the git commit that this job should run. Leave blank to use the project's default",
+                    "type": "string"
+                },
+                "emailReportTo": {
+                    "description": "List of usernames to email the report to",
+                    "type": "string"
+                },
+                "projectBranch": {
+                    "description": "he project branch that this job is evaluating",
+                    "type": "string"
+                },
+                "projectKey": {
+                    "description": "The key of the project to start",
+                    "type": "string"
+                },
+                "version": {
+                    "description": "Use this as the analysis' version. On success the Project's default version will be set to this",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "projectKey"
+            ],
+            "type": "object"
+        }
+    }
+}
